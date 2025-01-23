@@ -1,0 +1,21 @@
+# Use a lightweight Python image as the base
+FROM python:3.9-slim
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy only necessary files to the container
+COPY requirements.txt /app/
+COPY . /app/
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Set environment variables
+ENV NAME=World
+
+# Expose the application's port (if needed)
+EXPOSE 5000
+
+# Command to run the application
+CMD ["python3", "app.py"]
